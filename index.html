@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Armin Ahmadi | AI Engineer</title>
+<style>
+*{box-sizing:border-box;font-family:Inter,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{margin:0;background:#020617;color:#e5e7eb;overflow-x:hidden}
+#bg{position:fixed;inset:0;z-index:-1}
+.container{max-width:1250px;margin:auto;padding:30px}
+.glass{
+background:rgba(15,23,42,.72);
+backdrop-filter:blur(18px);
+border:1px solid rgba(148,163,184,.2);
+border-radius:32px;
+padding:40px;
+margin:35px 0;
+box-shadow:0 30px 80px rgba(0,0,0,.4);
+opacity:0;
+transform:translateY(50px);
+transition:1s;
+}
+.show{opacity:1;transform:none}
+.hero{min-height:90vh;display:flex;align-items:center;gap:50px;flex-wrap:wrap}
+.hero img{width:260px;height:260px;border-radius:50%;object-fit:cover;border:5px solid #38bdf8;box-shadow:0 0 50px #38bdf8}
+h1{font-size:70px;margin:0;background:linear-gradient(90deg,#22d3ee,#8b5cf6,#ec4899);background-clip:text;color:transparent}
+h2{color:#38bdf8;font-size:35px}
+p{font-size:18px;color:#cbd5e1}
+.btns a,.tag{
+display:inline-block;
+padding:12px 20px;
+margin:7px;
+border-radius:20px;
+background:#111827;
+border:1px solid #334155;
+color:white;
+text-decoration:none;
+transition:.3s;
+}
+.btns a:hover,.tag:hover{transform:translateY(-5px);border-color:#38bdf8}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+.card{
+background:#0f172a;
+padding:25px;
+border-radius:25px;
+transition:.4s;
+text-decoration:none;
+color:white;
+border:1px solid transparent;
+}
+.card:hover{transform:translateY(-10px);border-color:#38bdf8}
+.bar{height:12px;background:#1e293b;border-radius:20px;margin-top:10px}
+.fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#22d3ee,#8b5cf6)}
+.number{font-size:45px;color:#a78bfa;font-weight:bold}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="container">
+
+<section class="glass hero">
+<img src="profile.png">
+<div>
+<h1>Armin Ahmadi</h1>
+<h2>AI Engineer • Machine Learning • Data Science</h2>
+<p>
+Building intelligent systems with Machine Learning, Data Analysis,
+Feature Engineering and Advanced Visualization.
+</p>
+<div class="btns">
+<a href="https://www.kaggle.com/arminahamadi">🧪 Kaggle</a>
+<a href="https://github.com/Armin-Ah404">💻 GitHub</a>
+<a href="https://discord.com/users/arminahmadi_80399">🎮 Discord</a>
+<a href="https://t.me/Armin_8712">✈️ Telegram</a>
+</div>
+</div>
+</section>
+
+<section class="glass">
+<h2>⚡ AI & Machine Learning Skills</h2>
+<div class="grid">
+<div class="card">Python<div class="bar"><div class="fill" style="width:95%"></div></div></div>
+<div class="card">Machine Learning<div class="bar"><div class="fill" style="width:88%"></div></div></div>
+<div class="card">Data Visualization<div class="bar"><div class="fill" style="width:92%"></div></div></div>
+<div class="card">Statistics<div class="bar"><div class="fill" style="width:85%"></div></div></div>
+</div>
+</section>
+
+<section class="glass">
+<h2>🏆 Kaggle Journey</h2>
+<div class="grid">
+<div class="card"><div class="number">3+</div>EDA Projects</div>
+<div class="card"><div class="number">ML</div>Future Models</div>
+<div class="card"><div class="number">∞</div>Learning & Building</div>
+</div>
+</section>
+
+<section class="glass">
+<h2>🚀 Projects</h2>
+<div class="grid">
+<a class="card" href="https://www.kaggle.com/code/arminahamadi/university-rankings-eda-visualization">
+<h3>University Rankings EDA</h3>
+<p>Ranking analysis, statistics and visualization.</p>
+</a>
+<a class="card" href="https://www.kaggle.com/code/arminahamadi/heart-disease-dataset-eda-data-visualization">
+<h3>Heart Disease Analysis</h3>
+<p>Exploration of medical data patterns.</p>
+</a>
+<a class="card" href="https://www.kaggle.com/code/arminahamadi/water-quality-analysis-eda-data-visualization">
+<h3>Water Quality Analysis</h3>
+<p>Finding insights from environmental data.</p>
+</a>
+</div>
+</section>
+
+<section class="glass">
+<h2>📊 Model Metrics</h2>
+<div class="grid">
+<div class="card">Classification<br><b>Accuracy / Precision / Recall</b></div>
+<div class="card">Regression<br><b>RMSE / R² Score</b></div>
+<div class="card">Clustering<br><b>Pattern Discovery</b></div>
+</div>
+</section>
+
+</div>
+
+<script>
+const c=document.getElementById("bg"),x=c.getContext("2d");
+let w,h,p=[];
+function r(){w=c.width=innerWidth;h=c.height=innerHeight}
+r();onresize=r;
+for(let i=0;i<90;i++)p.push({x:Math.random()*w,y:Math.random()*h,a:(Math.random()-.5),b:(Math.random()-.5)});
+function draw(){
+x.clearRect(0,0,w,h);
+p.forEach(q=>{q.x+=q.a;q.y+=q.b;
+if(q.x<0||q.x>w)q.a*=-1;if(q.y<0||q.y>h)q.b*=-1;
+x.fillStyle="#38bdf8";x.beginPath();x.arc(q.x,q.y,2,0,7);x.fill();
+p.forEach(z=>{let d=Math.hypot(q.x-z.x,q.y-z.y);if(d<100){x.strokeStyle="rgba(56,189,248,.15)";x.beginPath();x.moveTo(q.x,q.y);x.lineTo(z.x,z.y);x.stroke()}})
+});requestAnimationFrame(draw)}
+draw();
+const ob=new IntersectionObserver(e=>e.forEach(a=>a.isIntersecting&&a.target.classList.add("show")));
+document.querySelectorAll(".glass").forEach(a=>ob.observe(a));
+</script>
+</body>
+</html>
