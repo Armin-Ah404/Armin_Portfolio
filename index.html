@@ -3,145 +3,411 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Armin Ahmadi — AI Engineer, Machine Learning & Data Science portfolio.">
 <title>Armin Ahmadi | AI Engineer</title>
+
 <style>
-*{box-sizing:border-box;font-family:Inter,Arial,sans-serif}
+:root{
+  --bg:#020617;--panel:rgba(15,23,42,.68);--panel2:#0f172a;
+  --text:#e5e7eb;--muted:#94a3b8;--line:rgba(148,163,184,.18);
+  --cyan:#22d3ee;--violet:#8b5cf6;--pink:#ec4899;
+  --max:1180px;
+}
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#020617;color:#e5e7eb;overflow-x:hidden}
-#bg{position:fixed;inset:0;z-index:-1}
-.container{max-width:1250px;margin:auto;padding:30px}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  overflow-x:hidden;line-height:1.6;
+}
+a{color:inherit}
+#bg{position:fixed;inset:0;z-index:-2}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(34,211,238,.09),transparent 28%),
+    radial-gradient(circle at 85% 25%,rgba(139,92,246,.10),transparent 30%),
+    radial-gradient(circle at 50% 90%,rgba(236,72,153,.07),transparent 28%);
+}
+.container{max-width:var(--max);margin:auto;padding:0 24px}
+nav{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  width:min(calc(100% - 32px),980px);z-index:20;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:12px 16px;border:1px solid var(--line);border-radius:22px;
+  background:rgba(2,6,23,.65);backdrop-filter:blur(18px);
+  box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+.logo{font-weight:800;text-decoration:none;letter-spacing:.3px}
+.logo span{color:var(--cyan)}
+nav .links{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+nav .links a{
+  text-decoration:none;color:var(--muted);font-size:14px;padding:8px 10px;border-radius:12px;
+}
+nav .links a:hover{color:white;background:rgba(255,255,255,.06)}
+.hero{
+  min-height:100vh;display:grid;grid-template-columns:1.25fr .75fr;
+  align-items:center;gap:70px;padding:120px 0 70px;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);
+  background:rgba(15,23,42,.55);border-radius:999px;color:#cbd5e1;font-size:13px;
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}
+h1{
+  font-size:clamp(54px,8vw,92px);line-height:.95;margin:22px 0 18px;letter-spacing:-4px;
+  background:linear-gradient(100deg,var(--cyan),var(--violet),var(--pink));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero h2{font-size:clamp(22px,3vw,34px);margin:0 0 18px;color:#f8fafc}
+.hero p{font-size:18px;max-width:680px;color:#cbd5e1}
+.gradient-text{background:linear-gradient(90deg,var(--cyan),#c084fc,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 17px;border-radius:14px;
+  text-decoration:none;border:1px solid var(--line);background:rgba(15,23,42,.8);
+  transition:.25s;color:white;font-weight:600;
+}
+.btn.primary{background:linear-gradient(90deg,rgba(34,211,238,.18),rgba(139,92,246,.18));border-color:rgba(34,211,238,.35)}
+.btn:hover{transform:translateY(-3px);border-color:rgba(34,211,238,.65);box-shadow:0 10px 30px rgba(34,211,238,.08)}
+.profile-wrap{display:grid;place-items:center}
+.profile-ring{
+  width:min(330px,75vw);aspect-ratio:1;border-radius:50%;padding:6px;
+  background:conic-gradient(from 0deg,var(--cyan),var(--violet),var(--pink),var(--cyan));
+  animation:spin 10s linear infinite;box-shadow:0 0 80px rgba(34,211,238,.12);
+}
+.profile-ring img{
+  width:100%;height:100%;display:block;border-radius:50%;object-fit:cover;
+  border:6px solid var(--bg);animation:counterspin 10s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes counterspin{to{transform:rotate(-360deg)}}
+
+section{padding:55px 0}
 .glass{
-background:rgba(15,23,42,.72);
-backdrop-filter:blur(18px);
-border:1px solid rgba(148,163,184,.2);
-border-radius:32px;
-padding:40px;
-margin:35px 0;
-box-shadow:0 30px 80px rgba(0,0,0,.4);
-opacity:0;
-transform:translateY(50px);
-transition:1s;
+  background:var(--panel);backdrop-filter:blur(18px);border:1px solid var(--line);
+  border-radius:28px;padding:38px;margin:24px 0;box-shadow:0 25px 70px rgba(0,0,0,.28);
+  opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease;
 }
 .show{opacity:1;transform:none}
-.hero{min-height:90vh;display:flex;align-items:center;gap:50px;flex-wrap:wrap}
-.hero img{width:260px;height:260px;border-radius:50%;object-fit:cover;border:5px solid #38bdf8;box-shadow:0 0 50px #38bdf8}
-h1{font-size:70px;margin:0;background:linear-gradient(90deg,#22d3ee,#8b5cf6,#ec4899);background-clip:text;color:transparent}
-h2{color:#38bdf8;font-size:35px}
-p{font-size:18px;color:#cbd5e1}
-.btns a,.tag{
-display:inline-block;
-padding:12px 20px;
-margin:7px;
-border-radius:20px;
-background:#111827;
-border:1px solid #334155;
-color:white;
-text-decoration:none;
-transition:.3s;
-}
-.btns a:hover,.tag:hover{transform:translateY(-5px);border-color:#38bdf8}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}
+h2{font-size:clamp(30px,4vw,42px);margin:0;color:#f8fafc;letter-spacing:-1.2px}
+.section-head p{margin:0;color:var(--muted);max-width:540px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .card{
-background:#0f172a;
-padding:25px;
-border-radius:25px;
-transition:.4s;
-text-decoration:none;
-color:white;
-border:1px solid transparent;
+  background:linear-gradient(145deg,rgba(15,23,42,.9),rgba(15,23,42,.55));
+  border:1px solid var(--line);border-radius:22px;padding:24px;transition:.3s;
 }
-.card:hover{transform:translateY(-10px);border-color:#38bdf8}
-.bar{height:12px;background:#1e293b;border-radius:20px;margin-top:10px}
-.fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#22d3ee,#8b5cf6)}
-.number{font-size:45px;color:#a78bfa;font-weight:bold}
+.card:hover{transform:translateY(-7px);border-color:rgba(34,211,238,.4);box-shadow:0 18px 45px rgba(0,0,0,.22)}
+.card h3{margin:0 0 8px;font-size:20px}
+.muted{color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{padding:6px 10px;border-radius:999px;border:1px solid var(--line);font-size:12px;color:#cbd5e1;background:rgba(255,255,255,.03)}
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tech-card{position:relative;overflow:hidden;padding:25px;border-radius:22px;background:linear-gradient(145deg,rgba(15,23,42,.92),rgba(15,23,42,.52));border:1px solid var(--line);transition:.3s}
+.tech-card:after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-45px;top:-45px;background:rgba(34,211,238,.06)}
+.tech-card:hover{transform:translateY(-7px);border-color:rgba(34,211,238,.42);box-shadow:0 18px 45px rgba(0,0,0,.22)}
+.tech-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tech-icon{font-size:32px}.level{font-size:11px;padding:5px 9px;border-radius:999px;color:#a5f3fc;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.18)}
+.tech-card h3{margin:18px 0 7px;font-size:21px}.tech-card p{font-size:14px;min-height:68px}
+.skill{margin:18px 0}
+.skill-top{display:flex;justify-content:space-between;color:#e2e8f0;font-size:14px}
+.bar{height:9px;background:#1e293b;border-radius:99px;margin-top:8px;overflow:hidden}
+.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));width:0;transition:width 1.2s ease}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{text-align:center}
+.number{font-size:40px;font-weight:850;background:linear-gradient(90deg,var(--cyan),#c084fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat small{color:var(--muted)}
+.project{display:flex;flex-direction:column;min-height:240px}
+.project .project-icon{font-size:28px;margin-bottom:12px}
+.project .bottom{margin-top:auto;padding-top:18px;display:flex;justify-content:space-between;align-items:center;color:var(--cyan);font-size:14px;font-weight:700}
+.timeline{border-left:1px solid rgba(34,211,238,.3);padding-left:25px}
+.timeline-item{position:relative;margin:0 0 28px}
+.timeline-item:before{
+  content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:var(--cyan);
+  left:-31px;top:8px;box-shadow:0 0 18px rgba(34,211,238,.7)
+}
+.metric{text-align:left}
+.metric strong{display:block;font-size:17px;margin-bottom:5px}
+.contact{
+  display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:stretch;
+}
+.contact-card{display:flex;flex-direction:column;gap:12px}
+.contact-link{
+  display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);
+  border-radius:15px;text-decoration:none;color:#dbeafe;background:rgba(255,255,255,.025);
+}
+.contact-link:hover{border-color:rgba(34,211,238,.45);transform:translateX(3px)}
+footer{padding:50px 0 70px;text-align:center;color:#64748b;font-size:14px}
+.reveal-delay-1{transition-delay:.08s}.reveal-delay-2{transition-delay:.16s}.reveal-delay-3{transition-delay:.24s}
+@media(max-width:850px){
+  .tech-grid{grid-template-columns:1fr 1fr}
+  nav .links a:nth-child(n+5){display:none}
+  .hero{grid-template-columns:1fr;text-align:center;gap:30px}
+  .hero p{margin-left:auto;margin-right:auto}.btns{justify-content:center}
+  .profile-wrap{order:-1}.profile-ring{width:230px}
+  .grid,.contact{grid-template-columns:1fr 1fr}.stat-grid{grid-template-columns:1fr 1fr}
+  .section-head{display:block}.section-head p{margin-top:8px}
+}
+@media(max-width:560px){
+  .tech-grid{grid-template-columns:1fr}
+  .container{padding:0 15px}nav{top:10px}.logo{font-size:14px}
+  nav .links{display:none}.glass{padding:24px;border-radius:22px}
+  .grid,.contact,.stat-grid{grid-template-columns:1fr}
+  h1{letter-spacing:-2.5px}.hero{padding-top:115px}
+}
 </style>
 </head>
+
 <body>
 <canvas id="bg"></canvas>
-<div class="container">
 
-<section class="glass hero">
-<img src="profile.png">
-<div>
-<h1>Armin Ahmadi</h1>
-<h2>AI Engineer • Machine Learning • Data Science</h2>
-<p>
-Building intelligent systems with Machine Learning, Data Analysis,
-Feature Engineering and Advanced Visualization.
-</p>
-<div class="btns">
-<a href="https://www.kaggle.com/arminahamadi">🧪 Kaggle</a>
-<a href="https://github.com/Armin-Ah404">💻 GitHub</a>
-<a href="https://discord.com/users/arminahmadi_80399">🎮 Discord</a>
-<a href="https://t.me/Armin_8712">✈️ Telegram</a>
-</div>
-</div>
+<nav>
+  <a class="logo" href="#home">Armin<span>.</span></a>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#kaggle">Kaggle</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main class="container" id="home">
+
+<section class="hero">
+  <div>
+    <span class="eyebrow"><span class="dot"></span> AI & Data Science Portfolio</span>
+    <h1>Armin<br><span class="gradient-text">Ahmadi</span></h1>
+    <h2>AI Engineer • Machine Learning • Data Science</h2>
+    <p>
+      Building intelligent systems with <strong>Machine Learning</strong>, Data Analysis,
+      Feature Engineering and Advanced Visualization — while continuously learning,
+      experimenting and turning data into meaningful insights.
+    </p>
+    <div class="btns">
+      <a class="btn primary" href="https://www.kaggle.com/arminahamadi" target="_blank">🧪 Kaggle</a>
+      <a class="btn" href="https://github.com/Armin-Ah404" target="_blank">💻 GitHub</a>
+      <a class="btn" href="#projects">🚀 View Projects</a>
+      <a class="btn" href="#contact">✉️ Contact</a>
+    </div>
+  </div>
+  <div class="profile-wrap">
+    <div class="profile-ring">
+      <img src="profile.png" alt="Armin Ahmadi profile photo">
+    </div>
+  </div>
 </section>
 
-<section class="glass">
-<h2>⚡ AI & Machine Learning Skills</h2>
-<div class="grid">
-<div class="card">Python<div class="bar"><div class="fill" style="width:95%"></div></div></div>
-<div class="card">Machine Learning<div class="bar"><div class="fill" style="width:88%"></div></div></div>
-<div class="card">Data Visualization<div class="bar"><div class="fill" style="width:92%"></div></div></div>
-<div class="card">Statistics<div class="bar"><div class="fill" style="width:85%"></div></div></div>
-</div>
+<section id="about">
+  <div class="glass">
+    <div class="section-head">
+      <h2>About Me</h2>
+      <p>Curious mind. Data-driven thinking. Continuous building.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>🧠 What I Do</h3>
+        <p class="muted">I work with data to discover patterns, build analytical workflows, create visual stories and develop a strong foundation in machine learning.</p>
+      </div>
+      <div class="card">
+        <h3>🎯 My Direction</h3>
+        <p class="muted">My goal is to grow from exploratory data analysis toward production-ready ML and AI systems with measurable impact.</p>
+      </div>
+      <div class="card">
+        <h3>⚡ My Approach</h3>
+        <p class="muted">Learn by building: analyze real datasets, document the process, visualize results and continuously improve each project.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="glass">
-<h2>🏆 Kaggle Journey</h2>
-<div class="grid">
-<div class="card"><div class="number">3+</div>EDA Projects</div>
-<div class="card"><div class="number">ML</div>Future Models</div>
-<div class="card"><div class="number">∞</div>Learning & Building</div>
-</div>
+<section id="skills">
+  <div class="glass">
+    <div class="section-head">
+      <h2>Skills & Technologies</h2>
+      <p>A visual overview of the tools and areas I use while growing toward advanced AI engineering.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card"><div class="tech-top"><span class="tech-icon">🐍</span><span class="level">Advanced</span></div><h3>Python</h3><p class="muted">Core language for analysis, automation and machine learning workflows.</p><div class="tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Scikit-learn</span></div></div>
+      <div class="tech-card"><div class="tech-top"><span class="tech-icon">📊</span><span class="level">Advanced</span></div><h3>Data Science</h3><p class="muted">EDA, statistics, feature understanding and data-driven storytelling.</p><div class="tags"><span class="tag">EDA</span><span class="tag">Statistics</span><span class="tag">Feature Engineering</span></div></div>
+      <div class="tech-card"><div class="tech-top"><span class="tech-icon">🤖</span><span class="level">Growing</span></div><h3>Machine Learning</h3><p class="muted">Building a strong foundation in supervised and unsupervised learning.</p><div class="tags"><span class="tag">Classification</span><span class="tag">Regression</span><span class="tag">Clustering</span></div></div>
+      <div class="tech-card"><div class="tech-top"><span class="tech-icon">📈</span><span class="level">Advanced</span></div><h3>Visualization</h3><p class="muted">Turning complex datasets into clean, readable and engaging visual insights.</p><div class="tags"><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Plotly</span></div></div>
+      <div class="tech-card"><div class="tech-top"><span class="tech-icon">💻</span><span class="level">Active</span></div><h3>Development</h3><p class="muted">Organizing projects, documenting work and maintaining a growing public portfolio.</p><div class="tags"><span class="tag">GitHub</span><span class="tag">Git</span><span class="tag">Jupyter</span></div></div>
+      <div class="tech-card"><div class="tech-top"><span class="tech-icon">🧠</span><span class="level">Next</span></div><h3>AI Engineering</h3><p class="muted">The next stage: deeper ML, model evaluation, deployment and intelligent systems.</p><div class="tags"><span class="tag">ML Systems</span><span class="tag">Evaluation</span><span class="tag">Deployment</span></div></div>
+    </div>
+  </div>
 </section>
 
-<section class="glass">
-<h2>🚀 Projects</h2>
-<div class="grid">
-<a class="card" href="https://www.kaggle.com/code/arminahamadi/university-rankings-eda-visualization">
-<h3>University Rankings EDA</h3>
-<p>Ranking analysis, statistics and visualization.</p>
-</a>
-<a class="card" href="https://www.kaggle.com/code/arminahamadi/heart-disease-dataset-eda-data-visualization">
-<h3>Heart Disease Analysis</h3>
-<p>Exploration of medical data patterns.</p>
-</a>
-<a class="card" href="https://www.kaggle.com/code/arminahamadi/water-quality-analysis-eda-data-visualization">
-<h3>Water Quality Analysis</h3>
-<p>Finding insights from environmental data.</p>
-</a>
-</div>
+<section id="kaggle">
+  <div class="glass">
+    <div class="section-head">
+      <h2>Kaggle Journey 🏆</h2>
+      <p>Exploring datasets, publishing EDA notebooks and building a public data-science portfolio.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="card stat"><div class="number">3+</div><small>EDA Projects</small></div>
+      <div class="card stat"><div class="number">13+</div><small>Visualizations</small></div>
+      <div class="card stat"><div class="number">ML</div><small>Next Focus</small></div>
+      <div class="card stat"><div class="number">∞</div><small>Learning & Building</small></div>
+    </div>
+    <div class="btns" style="justify-content:center;margin-top:25px">
+      <a class="btn primary" href="https://www.kaggle.com/arminahamadi" target="_blank">View Kaggle Profile →</a>
+    </div>
+  </div>
 </section>
 
-<section class="glass">
-<h2>📊 Model Metrics</h2>
-<div class="grid">
-<div class="card">Classification<br><b>Accuracy / Precision / Recall</b></div>
-<div class="card">Regression<br><b>RMSE / R² Score</b></div>
-<div class="card">Clustering<br><b>Pattern Discovery</b></div>
-</div>
+<section id="projects">
+  <div class="glass">
+    <div class="section-head">
+      <h2>Featured Projects 🚀</h2>
+      <p>Click any project to explore the complete notebook and analysis on Kaggle.</p>
+    </div>
+    <div class="grid">
+      <a class="card project" href="https://www.kaggle.com/code/arminahamadi/university-rankings-eda-visualization" target="_blank">
+        <div class="project-icon">🎓</div>
+        <h3>University Rankings EDA</h3>
+        <p class="muted">Exploratory analysis of global university rankings, statistical relationships and data visualization.</p>
+        <div class="tags"><span class="tag">EDA</span><span class="tag">Statistics</span><span class="tag">Visualization</span></div>
+        <div class="bottom">Open on Kaggle ↗</div>
+      </a>
+
+      <a class="card project" href="https://www.kaggle.com/code/arminahamadi/heart-disease-dataset-eda-data-visualization" target="_blank">
+        <div class="project-icon">❤️</div>
+        <h3>Heart Disease Analysis</h3>
+        <p class="muted">Exploration of health-related data to identify patterns, relationships and meaningful visual insights.</p>
+        <div class="tags"><span class="tag">EDA</span><span class="tag">Data Analysis</span><span class="tag">Visualization</span></div>
+        <div class="bottom">Open on Kaggle ↗</div>
+      </a>
+
+      <a class="card project" href="https://www.kaggle.com/code/arminahamadi/water-quality-analysis-eda-data-visualization" target="_blank">
+        <div class="project-icon">💧</div>
+        <h3>Water Quality Analysis</h3>
+        <p class="muted">Environmental data exploration focused on discovering patterns and communicating insights visually.</p>
+        <div class="tags"><span class="tag">EDA</span><span class="tag">Environment</span><span class="tag">Visualization</span></div>
+        <div class="bottom">Open on Kaggle ↗</div>
+      </a>
+    </div>
+  </div>
 </section>
 
-</div>
+<section id="workflow">
+  <div class="glass">
+    <div class="section-head">
+      <h2>My Data Science Workflow</h2>
+      <p>From raw data to a clear, reproducible insight.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item"><h3>01 — Understand</h3><p class="muted">Define the problem, understand the dataset and identify the questions that matter.</p></div>
+      <div class="timeline-item"><h3>02 — Clean & Explore</h3><p class="muted">Handle missing values, inspect distributions, detect patterns and perform exploratory analysis.</p></div>
+      <div class="timeline-item"><h3>03 — Visualize</h3><p class="muted">Turn relationships and statistical findings into clear, informative visualizations.</p></div>
+      <div class="timeline-item"><h3>04 — Model</h3><p class="muted">Apply suitable machine-learning methods and evaluate performance with relevant metrics.</p></div>
+      <div class="timeline-item"><h3>05 — Communicate</h3><p class="muted">Document the reasoning, findings and limitations so the work can be understood and reproduced.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="models">
+  <div class="glass">
+    <div class="section-head">
+      <h2>AI / ML Models 🧠</h2>
+      <p>Areas I am developing toward.</p>
+    </div>
+    <div class="grid">
+      <div class="card metric"><strong>Classification</strong><span class="muted">Accuracy • Precision • Recall • F1</span></div>
+      <div class="card metric"><strong>Regression</strong><span class="muted">RMSE • MAE • R² Score</span></div>
+      <div class="card metric"><strong>Clustering</strong><span class="muted">Pattern Discovery • Segmentation</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="glass">
+    <div class="section-head">
+      <h2>Let's Connect ✨</h2>
+      <p>Interested in data, machine learning or collaborating on a project? Find me here.</p>
+    </div>
+    <div class="contact">
+      <div class="card contact-card">
+        <h3>🔗 Profiles</h3>
+        <a class="contact-link" href="https://www.kaggle.com/arminahamadi" target="_blank">🧪 <span>Kaggle</span></a>
+        <a class="contact-link" href="https://github.com/Armin-Ah404" target="_blank">💻 <span>GitHub</span></a>
+      </div>
+      <div class="card contact-card">
+        <h3>💬 Community</h3>
+        <a class="contact-link" href="https://discord.com/users/arminahmadi_80399" target="_blank">🎮 <span>Discord</span></a>
+        <a class="contact-link" href="https://t.me/Armin_8712" target="_blank">✈️ <span>Telegram</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>Built with curiosity, data & code.</div>
+  <div style="margin-top:6px">© 2026 Armin Ahmadi • AI Engineer / Data Science</div>
+</footer>
+
+</main>
 
 <script>
-const c=document.getElementById("bg"),x=c.getContext("2d");
-let w,h,p=[];
-function r(){w=c.width=innerWidth;h=c.height=innerHeight}
-r();onresize=r;
-for(let i=0;i<90;i++)p.push({x:Math.random()*w,y:Math.random()*h,a:(Math.random()-.5),b:(Math.random()-.5)});
-function draw(){
-x.clearRect(0,0,w,h);
-p.forEach(q=>{q.x+=q.a;q.y+=q.b;
-if(q.x<0||q.x>w)q.a*=-1;if(q.y<0||q.y>h)q.b*=-1;
-x.fillStyle="#38bdf8";x.beginPath();x.arc(q.x,q.y,2,0,7);x.fill();
-p.forEach(z=>{let d=Math.hypot(q.x-z.x,q.y-z.y);if(d<100){x.strokeStyle="rgba(56,189,248,.15)";x.beginPath();x.moveTo(q.x,q.y);x.lineTo(z.x,z.y);x.stroke()}})
-});requestAnimationFrame(draw)}
-draw();
-const ob=new IntersectionObserver(e=>e.forEach(a=>a.isIntersecting&&a.target.classList.add("show")));
-document.querySelectorAll(".glass").forEach(a=>ob.observe(a));
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+let W,H,particles=[];
+function resize(){
+  W=canvas.width=window.innerWidth;
+  H=canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
+
+function seed(){
+  particles=[];
+  const count=Math.min(95,Math.floor(window.innerWidth/12));
+  for(let i=0;i<count;i++){
+    particles.push({
+      x:Math.random()*W,y:Math.random()*H,
+      vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
+      r:Math.random()*1.8+.6
+    });
+  }
+}
+seed();
+window.addEventListener("resize",seed);
+
+function animate(){
+  ctx.clearRect(0,0,W,H);
+  for(const p of particles){
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>W)p.vx*=-1;
+    if(p.y<0||p.y>H)p.vy*=-1;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="rgba(56,189,248,.65)";ctx.fill();
+  }
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const a=particles[i],b=particles[j];
+      const d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<115){
+        ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+        ctx.strokeStyle=`rgba(56,189,248,${(1-d/115)*.12})`;ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+      entry.target.querySelectorAll(".fill").forEach(fill=>{
+        fill.style.width=fill.dataset.width;
+      });
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll(".glass").forEach(el=>observer.observe(el));
 </script>
 </body>
 </html>
